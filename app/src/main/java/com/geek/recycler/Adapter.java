@@ -8,7 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
@@ -48,9 +51,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         public void onBind(Data s) {
             title.setText(s.getTitle());
-            date.setText((String.valueOf(s.getDate())));
+//            date.setText((String.valueOf(s.getDate())));
+            date.setText(converter(s.getDate()));
             description.setText(s.getDescription());
             id.setText(String.valueOf(getAdapterPosition()+1));
         }
+    }
+
+    public String converter(long currentTime){
+        DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+        return date.format(System.currentTimeMillis());
     }
 }
